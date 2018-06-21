@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="120dp"
+    android:layout_gravity="center"
+    android:background="#4d4d4d"
+    android:orientation="vertical"
+    tools:context="com.example.ruido.ausencias.Inserir.InserirActivity">
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:text="A sua Ausência foi inserida."
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="30dp"
+        android:background="#4d4d4d"
+        android:onClick="next"
+        android:text="ok"
+        android:textColor="#ffffff" />
+
+
+</LinearLayout>

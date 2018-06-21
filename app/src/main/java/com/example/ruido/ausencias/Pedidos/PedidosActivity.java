@@ -36,12 +36,14 @@ public class PedidosActivity extends AppCompatActivity {
     String primeironome;
     String ultimonome;
     private Context context;
-    private boolean boolres = false;
+    private ArrayList<String> ID = new ArrayList<String>();
     private ArrayList<String> Name = new ArrayList<String>();
     private ArrayList<String> Reason = new ArrayList<String>();
     private ArrayList<String> State = new ArrayList<String>();
     private ArrayList<String> Startdate = new ArrayList<String>();
     private ArrayList<String> Finishdate = new ArrayList<String>();
+    private ArrayList<String> Comments = new ArrayList<String>();
+    private ArrayList<String> Hours = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,22 +74,27 @@ public class PedidosActivity extends AppCompatActivity {
                     JSONArray jObj = new JSONArray(myResponse);
                     for (int i = 0; i < jObj.length(); i++) {
                         JSONObject obj = jObj.getJSONObject(i);
+                        String id = obj.getString("id");
                         String nome = obj.getString("name");
                         String motivo = obj.getString("reason");
                         String datainicio = obj.getString("startdate");
                         String datafim = obj.getString("finishdate");
                         String estado = obj.getString("state");
+                        String comments = obj.getString("comments");
+                        String hours = obj.getString("hours");
+                        ID.add(id);
                         Name.add(nome);
                         Reason.add(motivo);
                         Startdate.add(datainicio);
                         Finishdate.add(datafim);
+                        Comments.add(comments);
+                        Hours.add(hours);
                         if (estado.contains("0")) {
                             String state = "Em Aprovação";
                             State.add(state);
                         }
 
                     }
-                    boolres = true;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -98,10 +105,10 @@ public class PedidosActivity extends AppCompatActivity {
         rv.setLayoutManager(new GridLayoutManager(context, 1));
         rv.setHasFixedSize(true);
 
-        PedidosAdapter adapter = new PedidosAdapter(context, Name, Reason, Startdate, Finishdate, State);
+
+        PedidosAdapter adapter = new PedidosAdapter(context, ID, Name, Reason, Startdate, Finishdate, State, Comments, Hours);
 
             rv.setAdapter(adapter);
-
 
     }
 
@@ -113,5 +120,6 @@ public class PedidosActivity extends AppCompatActivity {
         intent.putExtra("lastname", ultimonome);
         startActivity(intent);
     }
+
 }
 

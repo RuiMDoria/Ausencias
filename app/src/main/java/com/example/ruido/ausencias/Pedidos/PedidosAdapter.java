@@ -1,6 +1,7 @@
 package com.example.ruido.ausencias.Pedidos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,28 +12,33 @@ import com.example.ruido.ausencias.R;
 import java.util.ArrayList;
 
 public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
-    Context contexto;
-    ArrayList<String> Name, Reason, Startdate, Finishdate, State;
+    private static final String TAG = "PedidosAdapter";
+    Context context;
+    ArrayList<String> ID, Name, Reason, Startdate, Finishdate, State, Comments, Hours;
 
-    public PedidosAdapter(Context contexto, ArrayList<String> Name, ArrayList<String> Reason, ArrayList<String> Startdate, ArrayList<String> Finishdate, ArrayList<String> State) {
-        this.contexto = contexto;
+    public PedidosAdapter(Context context, ArrayList<String> ID, ArrayList<String> Name, ArrayList<String> Reason, ArrayList<String> Startdate, ArrayList<String> Finishdate, ArrayList<String> State, ArrayList<String> Comments, ArrayList<String> Hours) {
+
+        this.context = context;
+        this.ID = ID;
         this.Name = Name;
         this.Reason = Reason;
         this.Startdate = Startdate;
         this.Finishdate = Finishdate;
         this.State = State;
+        this.Comments = Comments;
+        this.Hours = Hours;
 
     }
 
     @Override
     public Pedido onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View v = LayoutInflater.from(contexto).inflate(R.layout.activity_pedido, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.activity_pedido, parent, false);
         return new Pedido(v);
+
     }
 
     @Override
-    public void onBindViewHolder(Pedido holder, int position) {
+    public void onBindViewHolder(Pedido holder, final int position) {
 
         holder.nome.setText(Name.get(position));
         holder.motivo.setText(Reason.get(position));
@@ -40,11 +46,28 @@ public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
         holder.datafim.setText(Finishdate.get(position));
         holder.estado.setText(State.get(position));
 
+        holder.recyclelayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PedidoActivity.class);
+                intent.putExtra("id", ID.get(position));
+                intent.putExtra("nome", Name.get(position));
+                intent.putExtra("datainicio", Startdate.get(position));
+                intent.putExtra("datafim", Finishdate.get(position));
+                intent.putExtra("motivo", Reason.get(position));
+                intent.putExtra("observacoes", Comments.get(position));
+                intent.putExtra("horas", Hours.get(position));
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 
     @Override
     public int getItemCount() {
-        return Name.size();
+
+        return ID.size();
     }
 }

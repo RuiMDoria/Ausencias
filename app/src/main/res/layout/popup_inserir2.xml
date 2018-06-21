@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.ruido.ausencias.Inserir.InserirActivity"
     android:layout_width="300dp"
     android:layout_height="120dp"
     android:layout_gravity="center"
     android:background="#4d4d4d"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.example.ruido.ausencias.Pedidos.PedidoActivity">
 
     <TextView
         android:layout_width="280dp"
@@ -22,12 +22,12 @@
         android:id="@+id/button_ok"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="#4d4d4d"
-        android:text="ok"
-        android:textColor="#ffffff"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="250dp"
-        android:onClick="next"/>
+        android:layout_marginTop="30dp"
+        android:background="#4d4d4d"
+        android:onClick="next"
+        android:text="ok"
+        android:textColor="#ffffff" />
 
 
 </LinearLayout>

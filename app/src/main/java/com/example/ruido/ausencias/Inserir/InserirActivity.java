@@ -1,14 +1,13 @@
 package com.example.ruido.ausencias.Inserir;
 
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,14 +16,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.ruido.ausencias.Ausencias.Ausencia;
 import com.example.ruido.ausencias.Ausencias.MinhasAusenciasActivity;
 import com.example.ruido.ausencias.Conexao;
 import com.example.ruido.ausencias.MainActivity;
 import com.example.ruido.ausencias.Pedidos.PedidosActivity;
 import com.example.ruido.ausencias.R;
 
-import java.net.URL;
 import java.net.URLEncoder;
 
 
@@ -70,6 +67,7 @@ public class InserirActivity extends AppCompatActivity {
                     String horas = spinnerHoras.getSelectedItem().toString();
                     String observacoes = textoObservacoes.getText().toString();
                     nome = URLEncoder.encode(nome);
+                    observacoes = URLEncoder.encode(observacoes);
 
 
 
@@ -86,23 +84,6 @@ public class InserirActivity extends AppCompatActivity {
             }
         });
     }
-    private class SolicitaDados extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            return Conexao.postDados(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String resultado) {
-
-            if (resultado.contains("registo_ok")){
-                setContentView(R.layout.popup_inserir);
-            }else{
-                Toast.makeText(getApplicationContext(), "Algo correu mal", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
 
     public void setView (View view){
         PickerDialogs.PickerDialogs1 dialog = new PickerDialogs.PickerDialogs1();
@@ -113,12 +94,12 @@ public class InserirActivity extends AppCompatActivity {
         PickerDialogs.PickerDialogs2 dialog2 = new PickerDialogs.PickerDialogs2();
         dialog2.show(getFragmentManager(),"date_picker");
     }
+
     public void next(View view){
         Intent intent = new Intent(InserirActivity.this, MainActivity.class);
         intent.putExtra("id_user", idutilizador);
         startActivity(intent);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,6 +130,24 @@ public class InserirActivity extends AppCompatActivity {
 
         }
         return(true);
+    }
+
+    private class SolicitaDados extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String resultado) {
+
+            if (resultado.contains("registo_ok")) {
+                setContentView(R.layout.popup_inserir1);
+            } else {
+                Toast.makeText(getApplicationContext(), "Algo correu mal", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 

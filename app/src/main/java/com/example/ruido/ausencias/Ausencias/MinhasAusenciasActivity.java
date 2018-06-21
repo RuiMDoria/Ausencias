@@ -38,7 +38,6 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
     String ultimonome;
     String state;
     private Context context;
-    private boolean boolres = false;
     private ArrayList<String> Name = new ArrayList<String>();
     private ArrayList<String> Reason = new ArrayList<String>();
     private ArrayList<String> State = new ArrayList<String>();
@@ -48,7 +47,7 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pedidos);
+        setContentView(R.layout.activity_minhasausencias);
         context = this;
         idutilizador = getIntent().getExtras().getString("id_user");
         nivelacesso = getIntent().getExtras().getString("acesslevel");
@@ -91,14 +90,13 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
                         State.add(state);
 
                     }
-                    boolres = true;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        rv = findViewById(R.id.listapedidos);
+        rv = findViewById(R.id.listaausencias);
         rv.setLayoutManager(new GridLayoutManager(context, 1));
         rv.setHasFixedSize(true);
 
