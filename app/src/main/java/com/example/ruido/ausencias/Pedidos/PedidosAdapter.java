@@ -10,16 +10,12 @@ import com.example.ruido.ausencias.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by ruido on 14/05/2018.
- */
-
 public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
-    Context _context;
+    Context contexto;
     ArrayList<String> Name, Reason, Startdate, Finishdate, State;
 
-    public PedidosAdapter(Context _context, ArrayList<String> Name, ArrayList<String> Reason, ArrayList<String> Startdate, ArrayList<String> Finishdate, ArrayList<String> State) {
-        this._context = _context;
+    public PedidosAdapter(Context contexto, ArrayList<String> Name, ArrayList<String> Reason, ArrayList<String> Startdate, ArrayList<String> Finishdate, ArrayList<String> State) {
+        this.contexto = contexto;
         this.Name = Name;
         this.Reason = Reason;
         this.Startdate = Startdate;
@@ -31,9 +27,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
     @Override
     public Pedido onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(_context).inflate(R.layout.activity_pedido, parent, false);
-        int height = parent.getMeasuredHeight() / 4;
-        v.setMinimumHeight(height);
+        View v = LayoutInflater.from(contexto).inflate(R.layout.activity_pedido, parent, false);
         return new Pedido(v);
     }
 

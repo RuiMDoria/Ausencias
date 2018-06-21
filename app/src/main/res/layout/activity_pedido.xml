@@ -1,89 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingBottom="5dp"
-    android:paddingTop="5dp"
+    android:layout_height="wrap_content"
     android:background="#ffffff"
     android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
     tools:context="com.example.ruido.ausencias.Pedidos.PedidosActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_name"
-        android:text="Name"
-        android:textSize="20dp"
-        android:textColor="#00a7f5"/>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="#00a7f5"
+        android:textSize="20dp" />
+
+    <TextView
         android:id="@+id/tv_traço"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_name"
         android:text="-"
-        android:textSize="20dp"
-        android:textColor="#00a7f5"/>
+        android:textColor="#00a7f5"
+        android:textSize="20dp" />
+
     <TextView
+        android:id="@+id/tv_motivo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_motivo"
         android:layout_toRightOf="@id/tv_traço"
         android:text="Name"
-        android:textSize="20dp"
-        android:textColor="#00a7f5"/>
+        android:textColor="#00a7f5"
+        android:textSize="20dp" />
+
     <TextView
+        android:id="@+id/tv_startdated"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name"
-        android:id="@+id/tv_startdated"
         android:text="Início:"
-        android:textSize="18dp"
-        android:textColor="#f92a3f"/>
+        android:textColor="#f92a3f"
+        android:textSize="18dp" />
+
     <TextView
+        android:id="@+id/tv_startdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:id="@+id/tv_startdate"
         android:layout_toRightOf="@id/tv_startdated"
         android:text="1000 $"
-        android:textSize="18dp"
-        android:textColor="#f92a3f"/>
+        android:textColor="#f92a3f"
+        android:textSize="18dp" />
+
     <TextView
+        android:id="@+id/tv_finishdated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_finishdated"
         android:layout_below="@id/tv_startdated"
         android:text="Fim:"
-        android:textSize="18dp"
-        android:textColor="#f92a3f"/>
+        android:textColor="#f92a3f"
+        android:textSize="18dp" />
+
     <TextView
+        android:id="@+id/tv_finishdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_finishdate"
         android:layout_below="@id/tv_startdate"
         android:layout_toRightOf="@id/tv_finishdated"
         android:text="Fim:"
-        android:textSize="18dp"
-        android:textColor="#f92a3f"/>
+        android:textColor="#f92a3f"
+        android:textSize="18dp" />
+
     <TextView
+        android:id="@+id/tv_stated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_stated"
         android:layout_below="@id/tv_finishdated"
         android:text="Estado:"
-        android:textSize="16dp"
-        android:textColor="#000"/>
+        android:textColor="#000"
+        android:textSize="16dp" />
+
     <TextView
+        android:id="@+id/tv_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_state"
         android:layout_below="@id/tv_finishdate"
         android:layout_toRightOf="@id/tv_stated"
         android:text="Estado:"
-        android:textSize="16dp"
-        android:textColor="#000"/>
+        android:textColor="#000"
+        android:textSize="16dp" />
 </RelativeLayout>

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ruido.ausencias.Pedidos.Pedido;
 import com.example.ruido.ausencias.R;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
  * Created by ruido on 14/05/2018.
  */
 
-public class AusenciaAdapter extends RecyclerView.Adapter<Pedido> {
+public class AusenciaAdapter extends RecyclerView.Adapter<Ausencia> {
     Context _context;
     ArrayList<String> Name, Reason, Startdate, Finishdate, State;
 
@@ -31,12 +30,12 @@ public class AusenciaAdapter extends RecyclerView.Adapter<Pedido> {
     }
 
     @Override
-    public Pedido onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Ausencia onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(_context).inflate(R.layout.activity_pedido, parent, false);
         int height = parent.getMeasuredHeight() / 4;
         v.setMinimumHeight(height);
-        return new Pedido(v);
+        return new Ausencia(v);
     }
 
     @Override

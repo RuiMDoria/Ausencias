@@ -19,7 +19,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -82,7 +81,10 @@ public class PedidosActivity extends AppCompatActivity {
                         Reason.add(motivo);
                         Startdate.add(datainicio);
                         Finishdate.add(datafim);
-                        State.add(estado);
+                        if (estado.contains("0")) {
+                            String state = "Em Aprovação";
+                            State.add(state);
+                        }
 
                     }
                     boolres = true;
@@ -97,16 +99,10 @@ public class PedidosActivity extends AppCompatActivity {
         rv.setHasFixedSize(true);
 
         PedidosAdapter adapter = new PedidosAdapter(context, Name, Reason, Startdate, Finishdate, State);
-        try {
 
-            TimeUnit.MILLISECONDS.sleep(80);
-            Log.i("info", "adapter created: Confirmed");
             rv.setAdapter(adapter);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //request end
+
     }
 
     public void inserir(View view) {

@@ -36,6 +36,7 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
     String nivelacesso;
     String primeironome;
     String ultimonome;
+    String state;
     private Context context;
     private boolean boolres = false;
     private ArrayList<String> Name = new ArrayList<String>();
@@ -54,7 +55,7 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
         primeironome = getIntent().getExtras().getString("firstname");
         ultimonome = getIntent().getExtras().getString("lastname");
         Request request = new Request.Builder()
-                .url("http://192.168.2.252:81/Ausencia/listarpedidos.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
+                .url("http://192.168.2.252:81/Ausencia/listarausencias.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
                 .build();
         Log.i("info", "request built: Confirmed");
         okhttp3.Call myCall = okHttpClient.newCall(request);
@@ -82,7 +83,12 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
                         Reason.add(motivo);
                         Startdate.add(datainicio);
                         Finishdate.add(datafim);
-                        State.add(estado);
+                        if (estado.contains("1")) {
+                            state = "Aprovado";
+                        } else {
+                            state = "Rejeitado";
+                        }
+                        State.add(state);
 
                     }
                     boolres = true;
