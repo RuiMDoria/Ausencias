@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Ausencias</string>
+
+    <string-array name="motivo">
+        <item>Férias</item>
+        <item>Consulta Médica</item>
+        <item>Dia Compensatório</item>
+        <item>Casamento</item>
+        <item>Outra</item>
+    </string-array>
+
+    <string-array name="horas">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string name="nome">nome</string>
+    <string name="nascimento">data de nascimento</string>
+    <string name="cpf">CPF</string>
+</resources>

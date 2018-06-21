@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6ffff"
+    tools:context="com.example.ruido.ausencias.MainActivity">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/menu"
+        android:id="@+id/imagemain"
+        />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#4d4d4d"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/imagemain"
+        android:drawableLeft="@drawable/ausencia"
+        android:text="Pedidos"
+        android:onClick="pedidos"
+        android:id="@+id/botaopedidos" />
+
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#4d4d4d"
+        android:textColor="#ffffff"
+        android:layout_centerInParent="true"
+        android:drawableLeft="@drawable/registo"
+        android:text="Inserir Ausência"
+        android:onClick="inserir"
+        android:id="@+id/inserirAusencia" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#4d4d4d"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="95dp"
+        android:drawableLeft="@drawable/ausenciapropria"
+        android:text="Minhas Ausência"
+        android:onClick="minhasausencias"
+        android:id="@+id/minhasAusencias"/>
+
+</RelativeLayout>
