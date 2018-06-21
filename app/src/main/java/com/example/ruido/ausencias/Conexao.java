@@ -1,19 +1,16 @@
 package com.example.ruido.ausencias;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Connection;
 
 /**
  * Created by ruido on 21/05/2018.
  */
-
+//conexao  base de dado/api
 public class Conexao {
 
     public static String postDados(String urlUtilizador){
