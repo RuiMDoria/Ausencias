@@ -1,53 +1,22 @@
 package com.example.ruido.ausencias.Ausencias;
 
 
-public class Ausencia {
-    private int id;
-    private String name;
-    private int price;
-    private String description;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
-    //Constructor
+import com.example.ruido.ausencias.R;
 
-    public Ausencia(int id, String name, int price, String description) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-    }
+public class Ausencia extends RecyclerView.ViewHolder {
+    TextView nome, motivo, datainicio, datafim, estado;
 
-    //Setter, getter
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public Ausencia(View itemView) {
+        super(itemView);
+        nome = itemView.findViewById(R.id.tv_name);
+        motivo = itemView.findViewById(R.id.tv_motivo);
+        datainicio = itemView.findViewById(R.id.tv_startdate);
+        datafim = itemView.findViewById(R.id.tv_finishdate);
+        estado = itemView.findViewById(R.id.tv_state);
     }
 }
 

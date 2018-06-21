@@ -1,8 +1,8 @@
 package com.example.ruido.ausencias;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.ruido.ausencias.Ausencias.MinhasAusenciasActivity;
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, PedidosActivity.class);
             intent.putExtra("id_user", idutilizador);
             intent.putExtra("acesslevel", nivelacesso);
+            intent.putExtra("firstname", primeironome);
+            intent.putExtra("lastname", ultimonome);
             startActivity(intent);
         }
 
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MinhasAusenciasActivity.class);
             intent.putExtra("id_user", idutilizador);
             intent.putExtra("acesslevel", nivelacesso);
+            intent.putExtra("firstname", primeironome);
+            intent.putExtra("lastname", ultimonome);
             startActivity(intent);
         }
 
