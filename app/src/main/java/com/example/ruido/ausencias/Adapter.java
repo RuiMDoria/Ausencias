@@ -1,12 +1,12 @@
-package com.example.ruido.ausencias.Ausencias;
+package com.example.ruido.ausencias;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.content.Context;
 
-import com.example.ruido.ausencias.R;
+import com.example.ruido.ausencias.Ausencias.Ausencia;
 
 import java.util.List;
 
@@ -15,14 +15,14 @@ import java.util.List;
  * Created by ruido on 14/05/2018.
  */
 
-public class AusenciasAdapter extends BaseAdapter {
+public class Adapter extends BaseAdapter {
 
     private Context mContext;
     private List<Ausencia> mAusenciaList;
 
     //Constructor
 
-    public AusenciasAdapter(Context mContext, List<Ausencia> mList) {
+    public Adapter(Context mContext, List<Ausencia> mList) {
         this.mContext = mContext;
         this.mAusenciaList =mList;
     }

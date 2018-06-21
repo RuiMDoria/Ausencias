@@ -1,5 +1,6 @@
 package com.example.ruido.ausencias.Ausencias;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.content.Context;
 
 import com.example.ruido.ausencias.Inserir.InserirActivity;
 import com.example.ruido.ausencias.Pedidos.PedidosActivity;
@@ -22,14 +22,14 @@ import java.util.List;
 
 public class MinhasAusenciasActivity extends AppCompatActivity {
     private ListView lvAusencia;
-    private AusenciasAdapter adapter;
+    private Adapter adapter;
     private List<Ausencia> mAusenciaList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minhasausencias);
 
-        lvAusencia = (ListView)findViewById(R.id.listaminhasausencias);
+        lvAusencia = findViewById(R.id.listaminhasausencias);
 
         mAusenciaList = new ArrayList<>();
         mAusenciaList.add(new Ausencia(1, "iPhone4", 200, "Apple iPhone4 16GB"));
@@ -44,7 +44,7 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
         mAusenciaList.add(new Ausencia(11, "iPhone8S", 800, "Apple iPhone8S 16GB"));
 
         //Init adapter
-        adapter = new AusenciasAdapter((Context) getApplicationContext(), mAusenciaList);
+        adapter = new Adapter((Context) getApplicationContext(), mAusenciaList);
         lvAusencia.setAdapter(adapter);
 
         lvAusencia.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -7,9 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by ruido on 21/05/2018.
- */
+
 //conexao  base de dado/api
 public class Conexao {
 
