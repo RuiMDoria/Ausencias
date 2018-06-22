@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (email.isEmpty()||pass.isEmpty()){
                         Toast.makeText(getApplicationContext(), "Nenhum campo pode estar vazio", Toast.LENGTH_LONG).show();
                     }else {
-                        url = "http://192.168.2.252:81/Ausencia/login.php?email=" + email + "&password=" + pass;//metodo GET
+                        url = "http://thmc.ddns.net:81/Ausencia/login.php?email=" + email + "&password=" + pass;//metodo GET
                     }
                     new SolicitaDados().execute(url);
                 }else{

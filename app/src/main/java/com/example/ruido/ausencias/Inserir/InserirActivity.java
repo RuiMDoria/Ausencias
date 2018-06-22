@@ -71,7 +71,7 @@ public class InserirActivity extends AppCompatActivity {
             if (dateStart.isEmpty()||dateFinish.isEmpty()||motivo.isEmpty()||horas.isEmpty()){
                 Toast.makeText(getApplicationContext(), "Nenhum campo obrigatório pode estar vazio", Toast.LENGTH_LONG).show();
             }else {
-                url = "http://192.168.2.252:81/Ausencia/inserir.php?startdate=" + dateStart + "&finishdate=" + dateFinish + "&reason=" + motivo + "&hours=" + horas + "&comments=" + observacoes + "&fk_id_user=" + idutilizador + "&name=" + nome;//metodo POST
+                url = "http://thmc.ddns.net:81/Ausencia/inserir.php?startdate=" + dateStart + "&finishdate=" + dateFinish + "&reason=" + motivo + "&hours=" + horas + "&comments=" + observacoes + "&fk_id_user=" + idutilizador + "&name=" + nome;//metodo POST
             }
             new InserirActivity.SolicitaDados().execute(url);
         }else{

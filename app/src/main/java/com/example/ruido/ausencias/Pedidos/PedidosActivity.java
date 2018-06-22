@@ -61,7 +61,7 @@ public class PedidosActivity extends AppCompatActivity {
         primeironome = getIntent().getExtras().getString("firstname");
         ultimonome = getIntent().getExtras().getString("lastname");
         Request request = new Request.Builder()
-                .url("http://192.168.2.252:81/Ausencia/listarpedidos.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
+                .url("http://thmc.ddns.net:81/Ausencia/listarpedidos.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
                 .build();
         okhttp3.Call myCall = okHttpClient.newCall(request);
         myCall.enqueue(new Callback() {
