@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, InserirActivity.class);
             intent.putExtra("id_user", idutilizador);
+            intent.putExtra("acesslevel", nivelacesso);
             intent.putExtra("firstname",primeironome);
             intent.putExtra("lastname", ultimonome);
             startActivity(intent);

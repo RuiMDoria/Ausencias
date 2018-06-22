@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
     private static final String TAG = "PedidosAdapter";
     Context context;
-    ArrayList<String> ID, Name, Reason, Startdate, Finishdate, State, Comments, Hours;
+    ArrayList<String> ID, Name, Reason, Startdate, Finishdate, State, Comments, Hours, IDuser, Acess, First, Last;
 
-    public PedidosAdapter(Context context, ArrayList<String> ID, ArrayList<String> Name, ArrayList<String> Reason, ArrayList<String> Startdate, ArrayList<String> Finishdate, ArrayList<String> State, ArrayList<String> Comments, ArrayList<String> Hours) {
+    public PedidosAdapter(Context context, ArrayList<String> ID, ArrayList<String> Name, ArrayList<String> Reason, ArrayList<String> Startdate, ArrayList<String> Finishdate, ArrayList<String> State, ArrayList<String> Comments, ArrayList<String> Hours, ArrayList<String> IDuser, ArrayList<String> Acess, ArrayList<String> First, ArrayList<String> Last) {
 
         this.context = context;
         this.ID = ID;
@@ -27,6 +27,11 @@ public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
         this.State = State;
         this.Comments = Comments;
         this.Hours = Hours;
+        this.IDuser = IDuser;
+        this.Acess = Acess;
+        this.First = First;
+        this.Last = Last;
+
 
     }
 
@@ -46,6 +51,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
         holder.datafim.setText(Finishdate.get(position));
         holder.estado.setText(State.get(position));
 
+
         holder.recyclelayout.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -58,11 +64,14 @@ public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
                 intent.putExtra("motivo", Reason.get(position));
                 intent.putExtra("observacoes", Comments.get(position));
                 intent.putExtra("horas", Hours.get(position));
+                intent.putExtra("id_user", IDuser.get(position));
+                intent.putExtra("acesslevel", Acess.get(position));
+                intent.putExtra("firstname", First.get(position));
+                intent.putExtra("lastname", Last.get(position));
                 context.startActivity(intent);
+                ((PedidosActivity) context).finish();
             }
         });
-
-
     }
 
     @Override

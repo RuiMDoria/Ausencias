@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("lastname", dados[3]);
                 intent.putExtra("acesslevel", dados[4]);
                 startActivity(intent);
+                finish();
             }else{
                 Toast.makeText(getApplicationContext(), "Email ou Password erradas", Toast.LENGTH_LONG).show();
             }

@@ -7,9 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.ruido.ausencias.Inserir.InserirActivity;
+import com.example.ruido.ausencias.Pedidos.PedidosActivity;
 import com.example.ruido.ausencias.R;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
@@ -32,11 +35,7 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
     OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .addNetworkInterceptor(new StethoInterceptor())
             .build();
-    String idutilizador;
-    String nivelacesso;
-    String primeironome;
-    String ultimonome;
-    String state;
+    String idutilizador, nivelacesso, primeironome, ultimonome, state;
     private Context context;
     private ArrayList<String> Name = new ArrayList<String>();
     private ArrayList<String> Reason = new ArrayList<String>();
@@ -117,8 +116,49 @@ public class MinhasAusenciasActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, InserirActivity.class);
         intent.putExtra("id_user", idutilizador);
+        intent.putExtra("acesslevel", nivelacesso);
         intent.putExtra("firstname", primeironome);
         intent.putExtra("lastname", ultimonome);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        MenuItem m1 = menu.add(0, 0, 0, "Pedidos Ausência");
+        m1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        MenuItem m2 = menu.add(0, 1, 1, "Inserir Ausência");
+        m2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+
+        return (true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case 0:
+                Intent intent = new Intent(this, PedidosActivity.class);
+                intent.putExtra("id_user", idutilizador);
+                intent.putExtra("acesslevel", nivelacesso);
+                intent.putExtra("firstname", primeironome);
+                intent.putExtra("lastname", ultimonome);
+                startActivity(intent);
+                finish();
+                break;
+            case 1:
+                Intent intent2 = new Intent(this, InserirActivity.class);
+                intent2.putExtra("id_user", idutilizador);
+                intent2.putExtra("acesslevel", nivelacesso);
+                intent2.putExtra("firstname", primeironome);
+                intent2.putExtra("lastname", ultimonome);
+                startActivity(intent2);
+                finish();
+                break;
+
+        }
+        return (true);
     }
 }

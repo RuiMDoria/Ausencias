@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.example.ruido.ausencias.Ausencias.MinhasAusenciasActivity;
 import com.example.ruido.ausencias.Conexao;
-import com.example.ruido.ausencias.MainActivity;
 import com.example.ruido.ausencias.Pedidos.PedidosActivity;
 import com.example.ruido.ausencias.R;
+import com.example.ruido.ausencias.popup1;
 
 import java.net.URLEncoder;
 
@@ -33,10 +33,7 @@ public class InserirActivity extends AppCompatActivity {
     EditText textoObservacoes;
     Button Enviar;
     String url="";
-    String idutilizador;
-    String primeironome;
-    String ultimonome;
-    String nome;
+    String idutilizador, primeironome, ultimonome, nivelacesso, nome;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +48,11 @@ public class InserirActivity extends AppCompatActivity {
         idutilizador = getIntent().getExtras().getString("id_user");
         primeironome = getIntent().getExtras().getString("firstname");
         ultimonome = getIntent().getExtras().getString("lastname");
-        nome = primeironome+" "+ultimonome;
+        nivelacesso = getIntent().getExtras().getString("acesslevel");
+        nome = primeironome + " " + ultimonome;
+    }
 
-        Enviar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    public void Enviar(View view) {
                 ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
@@ -81,9 +78,9 @@ public class InserirActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "Nenhuma Conexão foi detetada", Toast.LENGTH_LONG).show();
                 }
-            }
-        });
     }
+
+
 
     public void setView (View view){
         PickerDialogs.PickerDialogs1 dialog = new PickerDialogs.PickerDialogs1();
@@ -95,11 +92,6 @@ public class InserirActivity extends AppCompatActivity {
         dialog2.show(getFragmentManager(),"date_picker");
     }
 
-    public void next(View view){
-        Intent intent = new Intent(InserirActivity.this, MainActivity.class);
-        intent.putExtra("id_user", idutilizador);
-        startActivity(intent);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,7 +99,7 @@ public class InserirActivity extends AppCompatActivity {
 
         MenuItem m1= menu.add(0, 0, 0, "Pedidos Ausência");
         m1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        MenuItem m2 = menu.add(0, 1, 1, "Minhas Ausência");
+        MenuItem m2 = menu.add(0, 1, 1, "Todas Ausências");
         m2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
         return (true);
@@ -120,12 +112,20 @@ public class InserirActivity extends AppCompatActivity {
             case 0:
                 Intent intent = new Intent(this, PedidosActivity.class);
                 intent.putExtra("id_user", idutilizador);
+                intent.putExtra("acesslevel", nivelacesso);
+                intent.putExtra("firstname", primeironome);
+                intent.putExtra("lastname", ultimonome);
                 startActivity(intent);
+                finish();
                 break;
             case 1:
                 Intent intent2 = new Intent(this, MinhasAusenciasActivity.class);
                 intent2.putExtra("id_user", idutilizador);
+                intent2.putExtra("acesslevel", nivelacesso);
+                intent2.putExtra("firstname", primeironome);
+                intent2.putExtra("lastname", ultimonome);
                 startActivity(intent2);
+                finish();
                 break;
 
         }
@@ -143,7 +143,13 @@ public class InserirActivity extends AppCompatActivity {
         protected void onPostExecute(String resultado) {
 
             if (resultado.contains("registo_ok")) {
-                setContentView(R.layout.popup_inserir1);
+                Intent intent3 = new Intent(InserirActivity.this, popup1.class);
+                intent3.putExtra("id_user", idutilizador);
+                intent3.putExtra("acesslevel", nivelacesso);
+                intent3.putExtra("firstname", primeironome);
+                intent3.putExtra("lastname", ultimonome);
+                startActivity(intent3);
+                finish();
             } else {
                 Toast.makeText(getApplicationContext(), "Algo correu mal", Toast.LENGTH_LONG).show();
             }

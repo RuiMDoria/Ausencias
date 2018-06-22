@@ -46,8 +46,7 @@ public class AusenciaAdapter extends RecyclerView.Adapter<Ausencia> {
         holder.datainicio.setText(Startdate.get(position));
         holder.datafim.setText(Finishdate.get(position));
         holder.estado.setText(State.get(position));
-
-
+        ((MinhasAusenciasActivity) _context).finish();
     }
 
     @Override

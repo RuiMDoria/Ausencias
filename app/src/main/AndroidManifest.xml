@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity"
+            android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +31,12 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Pedidos.PedidoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".popup1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".popup2"
             android:screenOrientation="portrait" />
 
 

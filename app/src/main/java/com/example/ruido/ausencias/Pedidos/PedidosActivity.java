@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.example.ruido.ausencias.Ausencias.MinhasAusenciasActivity;
 import com.example.ruido.ausencias.Inserir.InserirActivity;
 import com.example.ruido.ausencias.R;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -31,10 +34,7 @@ public class PedidosActivity extends AppCompatActivity {
     OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .addNetworkInterceptor(new StethoInterceptor())
             .build();
-    String idutilizador;
-    String nivelacesso;
-    String primeironome;
-    String ultimonome;
+    String idutilizador, nivelacesso, primeironome, ultimonome;
     private Context context;
     private ArrayList<String> ID = new ArrayList<String>();
     private ArrayList<String> Name = new ArrayList<String>();
@@ -44,6 +44,11 @@ public class PedidosActivity extends AppCompatActivity {
     private ArrayList<String> Finishdate = new ArrayList<String>();
     private ArrayList<String> Comments = new ArrayList<String>();
     private ArrayList<String> Hours = new ArrayList<String>();
+    private ArrayList<String> IDuser = new ArrayList<String>();
+    private ArrayList<String> Acess = new ArrayList<String>();
+    private ArrayList<String> First = new ArrayList<String>();
+    private ArrayList<String> Last = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +94,10 @@ public class PedidosActivity extends AppCompatActivity {
                         Finishdate.add(datafim);
                         Comments.add(comments);
                         Hours.add(hours);
+                        IDuser.add(idutilizador);
+                        Acess.add(nivelacesso);
+                        First.add(primeironome);
+                        Last.add(ultimonome);
                         if (estado.contains("0")) {
                             String state = "Em Aprovação";
                             State.add(state);
@@ -106,7 +115,7 @@ public class PedidosActivity extends AppCompatActivity {
         rv.setHasFixedSize(true);
 
 
-        PedidosAdapter adapter = new PedidosAdapter(context, ID, Name, Reason, Startdate, Finishdate, State, Comments, Hours);
+        PedidosAdapter adapter = new PedidosAdapter(context, ID, Name, Reason, Startdate, Finishdate, State, Comments, Hours, IDuser, Acess, First, Last);
 
             rv.setAdapter(adapter);
 
@@ -116,9 +125,50 @@ public class PedidosActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, InserirActivity.class);
         intent.putExtra("id_user", idutilizador);
+        intent.putExtra("acesslevel", nivelacesso);
         intent.putExtra("firstname", primeironome);
         intent.putExtra("lastname", ultimonome);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        MenuItem m1 = menu.add(0, 0, 0, "Inserir Ausência");
+        m1.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        MenuItem m2 = menu.add(0, 1, 1, "Todas Ausências");
+        m2.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+
+        return (true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case 0:
+                Intent intent = new Intent(this, InserirActivity.class);
+                intent.putExtra("id_user", idutilizador);
+                intent.putExtra("acesslevel", nivelacesso);
+                intent.putExtra("firstname", primeironome);
+                intent.putExtra("lastname", ultimonome);
+                startActivity(intent);
+                finish();
+                break;
+            case 1:
+                Intent intent2 = new Intent(this, MinhasAusenciasActivity.class);
+                intent2.putExtra("id_user", idutilizador);
+                intent2.putExtra("acesslevel", nivelacesso);
+                intent2.putExtra("firstname", primeironome);
+                intent2.putExtra("lastname", ultimonome);
+                startActivity(intent2);
+                finish();
+                break;
+
+        }
+        return (true);
     }
 
 }
