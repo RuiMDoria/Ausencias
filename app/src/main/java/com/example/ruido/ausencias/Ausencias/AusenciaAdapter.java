@@ -11,16 +11,14 @@ import com.example.ruido.ausencias.R;
 import java.util.ArrayList;
 
 
-/**
- * Created by ruido on 14/05/2018.
- */
+//Class responsável da ligação entre a class Ausencia com a class MinhasAusenciasActivity
 
 public class AusenciaAdapter extends RecyclerView.Adapter<Ausencia> {
-    Context _context;
+    Context context;
     ArrayList<String> Name, Reason, Startdate, Finishdate, State;
 
-    public AusenciaAdapter(Context _context, ArrayList<String> Name, ArrayList<String> Reason, ArrayList<String> Startdate, ArrayList<String> Finishdate, ArrayList<String> State) {
-        this._context = _context;
+    public AusenciaAdapter(Context context, ArrayList<String> Name, ArrayList<String> Reason, ArrayList<String> Startdate, ArrayList<String> Finishdate, ArrayList<String> State) {
+        this.context = context;
         this.Name = Name;
         this.Reason = Reason;
         this.Startdate = Startdate;
@@ -29,15 +27,18 @@ public class AusenciaAdapter extends RecyclerView.Adapter<Ausencia> {
 
     }
 
+    //Class que faz com que o layout activity_pedido apareça as vezes necessárias para a informação existente
     @Override
     public Ausencia onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(_context).inflate(R.layout.activity_pedido, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.activity_minhaausencia, parent, false);
         int height = parent.getMeasuredHeight() / 4;
         v.setMinimumHeight(height);
         return new Ausencia(v);
     }
 
+
+    //Class que faz os dados serem exibidos
     @Override
     public void onBindViewHolder(Ausencia holder, int position) {
 
@@ -46,9 +47,9 @@ public class AusenciaAdapter extends RecyclerView.Adapter<Ausencia> {
         holder.datainicio.setText(Startdate.get(position));
         holder.datafim.setText(Finishdate.get(position));
         holder.estado.setText(State.get(position));
-        ((MinhasAusenciasActivity) _context).finish();
     }
 
+    //Class que retorna o numero de itens na RecycleView
     @Override
     public int getItemCount() {
         return Name.size();

@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-
+//Class responsavel para enviar os dados de autenticação para o servidor e receber uma resposta, em caso de login_ok avança.
 public class LoginActivity extends AppCompatActivity {
 
     EditText textemail, textpassword;

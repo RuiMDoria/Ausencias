@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +28,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
+// Class responsavel pela leitura do json e descodificação e iniciação do layout
 public class PedidosActivity extends AppCompatActivity {
     RecyclerView rv;
     OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -50,6 +50,7 @@ public class PedidosActivity extends AppCompatActivity {
     private ArrayList<String> Last = new ArrayList<String>();
 
 
+    // Quando cria a activity faz estes processos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,18 +63,18 @@ public class PedidosActivity extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url("http://192.168.2.252:81/Ausencia/listarpedidos.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
                 .build();
-        Log.i("info", "request built: Confirmed");
         okhttp3.Call myCall = okHttpClient.newCall(request);
         myCall.enqueue(new Callback() {
 
+            //Em caso de falha a chamada é cancelada
             @Override
             public void onFailure(okhttp3.Call call, IOException e) {
                 call.cancel();
             }
 
+            //Em caso de resposta, descodifica a informação do json, insere em strings e envia envia para o adapter
             @Override
             public void onResponse(okhttp3.Call call, final Response response) throws IOException {
-                Log.i("info", "request got response: response");
                 final String myResponse = response.body().string();
                 try {
                     JSONArray jObj = new JSONArray(myResponse);
@@ -117,10 +118,11 @@ public class PedidosActivity extends AppCompatActivity {
 
         PedidosAdapter adapter = new PedidosAdapter(context, ID, Name, Reason, Startdate, Finishdate, State, Comments, Hours, IDuser, Acess, First, Last);
 
-            rv.setAdapter(adapter);
+        rv.setAdapter(adapter);
 
     }
 
+    //Quando carrega no botão novo pedido abre activity InserirActivity
     public void inserir(View view) {
 
         Intent intent = new Intent(this, InserirActivity.class);
@@ -132,6 +134,8 @@ public class PedidosActivity extends AppCompatActivity {
         finish();
     }
 
+
+    //Cria o menu superior
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -144,6 +148,7 @@ public class PedidosActivity extends AppCompatActivity {
         return (true);
     }
 
+    //Ao seleccionar uma opção da menu abre uma activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

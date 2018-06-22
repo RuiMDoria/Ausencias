@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-//conexao  base de dado/api
+//conexao  base de dado/api, este class é usado para a class login e inserir
 public class Conexao {
 
     public static String postDados(String urlUtilizador){

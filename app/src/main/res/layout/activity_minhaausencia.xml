@@ -12,7 +12,7 @@
     tools:context="com.example.ruido.ausencias.Pedidos.PedidosActivity">
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_name1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
@@ -23,13 +23,13 @@
         android:id="@+id/tv_traço"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_name"
+        android:layout_toRightOf="@id/tv_name1"
         android:text="-"
         android:textColor="#00a7f5"
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/tv_motivo"
+        android:id="@+id/tv_motivo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_traço"
@@ -41,13 +41,13 @@
         android:id="@+id/tv_startdated"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_name"
+        android:layout_below="@id/tv_name1"
         android:text="Início:"
         android:textColor="#f92a3f"
         android:textSize="18dp" />
 
     <TextView
-        android:id="@+id/tv_startdate"
+        android:id="@+id/tv_startdate1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -66,10 +66,10 @@
         android:textSize="18dp" />
 
     <TextView
-        android:id="@+id/tv_finishdate"
+        android:id="@+id/tv_finishdate1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_startdate"
+        android:layout_below="@id/tv_startdate1"
         android:layout_toRightOf="@id/tv_finishdated"
         android:text="Fim:"
         android:textColor="#f92a3f"
@@ -85,10 +85,10 @@
         android:textSize="16dp" />
 
     <TextView
-        android:id="@+id/tv_state"
+        android:id="@+id/tv_state1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_finishdate"
+        android:layout_below="@id/tv_finishdate1"
         android:layout_toRightOf="@id/tv_stated"
         android:text="Estado:"
         android:textColor="#000"

@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import java.util.Calendar;
 
-
+// Class para abrir o calendário
 public class PickerDialogs {
 
     public static class PickerDialogs1 extends DialogFragment {

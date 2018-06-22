@@ -24,7 +24,7 @@ import com.example.ruido.ausencias.popup1;
 
 import java.net.URLEncoder;
 
-
+//Class para inserir ausencias na base de dados
 public class InserirActivity extends AppCompatActivity {
     public static Button DateStart;
     public static Button DateFinish;
@@ -52,32 +52,31 @@ public class InserirActivity extends AppCompatActivity {
         nome = primeironome + " " + ultimonome;
     }
 
+    //Class para fazer enviar os dados para a base de dados
     public void Enviar(View view) {
-                ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-                if (networkInfo != null && networkInfo.isConnected()){
-                    String dateStart = DateStart.getText().toString();
-                    String dateFinish = DateFinish.getText().toString();
-                    String motivo = spinnerMotivo.getSelectedItem().toString();
-                    motivo=URLEncoder.encode(motivo);
-                    String horas = spinnerHoras.getSelectedItem().toString();
-                    String observacoes = textoObservacoes.getText().toString();
-                    nome = URLEncoder.encode(nome);
-                    observacoes = URLEncoder.encode(observacoes);
-
-
+        if (networkInfo != null && networkInfo.isConnected()){
+            String dateStart = DateStart.getText().toString();
+            String dateFinish = DateFinish.getText().toString();
+            String motivo = spinnerMotivo.getSelectedItem().toString();
+            motivo=URLEncoder.encode(motivo);
+            String horas = spinnerHoras.getSelectedItem().toString();
+            String observacoes = textoObservacoes.getText().toString();
+            nome = URLEncoder.encode(nome);
+            observacoes = URLEncoder.encode(observacoes);
 
 
-                    if (dateStart.isEmpty()||dateFinish.isEmpty()||motivo.isEmpty()||horas.isEmpty()){
-                        Toast.makeText(getApplicationContext(), "Nenhum campo obrigatório pode estar vazio", Toast.LENGTH_LONG).show();
-                    }else {
-                        url = "http://192.168.2.252:81/Ausencia/inserir.php?startdate=" + dateStart + "&finishdate=" + dateFinish + "&reason=" + motivo + "&hours=" + horas + "&comments=" + observacoes + "&fk_id_user=" + idutilizador + "&name=" + nome;//metodo POST
-                    }
-                    new InserirActivity.SolicitaDados().execute(url);
-                }else{
-                    Toast.makeText(getApplicationContext(), "Nenhuma Conexão foi detetada", Toast.LENGTH_LONG).show();
-                }
+            if (dateStart.isEmpty()||dateFinish.isEmpty()||motivo.isEmpty()||horas.isEmpty()){
+                Toast.makeText(getApplicationContext(), "Nenhum campo obrigatório pode estar vazio", Toast.LENGTH_LONG).show();
+            }else {
+                url = "http://192.168.2.252:81/Ausencia/inserir.php?startdate=" + dateStart + "&finishdate=" + dateFinish + "&reason=" + motivo + "&hours=" + horas + "&comments=" + observacoes + "&fk_id_user=" + idutilizador + "&name=" + nome;//metodo POST
+            }
+            new InserirActivity.SolicitaDados().execute(url);
+        }else{
+            Toast.makeText(getApplicationContext(), "Nenhuma Conexão foi detetada", Toast.LENGTH_LONG).show();
+        }
     }
 
 
@@ -92,7 +91,7 @@ public class InserirActivity extends AppCompatActivity {
         dialog2.show(getFragmentManager(),"date_picker");
     }
 
-
+    //Cria menu supeior
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -105,6 +104,7 @@ public class InserirActivity extends AppCompatActivity {
         return (true);
     }
 
+    //opções do menu superior
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){

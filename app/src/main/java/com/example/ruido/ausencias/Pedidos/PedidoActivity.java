@@ -28,6 +28,7 @@ public class PedidoActivity extends AppCompatActivity {
     Button Aprovar;
     Button Rejeitar;
 
+    //ao ser cria recebe as variavel e faz com que sejam visivel no local correto
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aprovacaopedido);
@@ -58,7 +59,7 @@ public class PedidoActivity extends AppCompatActivity {
         ultimonome = getIntent().getExtras().getString("lastname");
     }
 
-
+    // Quando se carrega no botão Aceitar
     public void Aceitar(View view) {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -71,7 +72,7 @@ public class PedidoActivity extends AppCompatActivity {
         }
     }
 
-
+    // Quando se carrega no botão Rejeitar
     public void Rejeitar(View view) {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -84,6 +85,7 @@ public class PedidoActivity extends AppCompatActivity {
         }
     }
 
+    //Cria o menu superior
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -99,6 +101,7 @@ public class PedidoActivity extends AppCompatActivity {
         return (true);
     }
 
+    //Ao seleccionar uma opção da menu abre uma activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

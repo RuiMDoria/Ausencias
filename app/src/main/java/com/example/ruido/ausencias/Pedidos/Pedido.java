@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.example.ruido.ausencias.R;
 
+
+//Class que atribui variaveis a cada elemento do layout activity_pedido
 public class Pedido extends RecyclerView.ViewHolder {
     TextView nome, motivo, datainicio, datafim, estado;
     RelativeLayout recyclelayout;

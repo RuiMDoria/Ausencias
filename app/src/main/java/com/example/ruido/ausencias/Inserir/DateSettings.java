@@ -6,6 +6,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 
+//Class que a data escolhida apareça
 public class DateSettings {
 
     public static class DateSettings1 implements DatePickerDialog.OnDateSetListener {
@@ -28,6 +29,7 @@ public class DateSettings {
         }
 
     }
+
     public static class DateSettings2 implements DatePickerDialog.OnDateSetListener{
         public static String date2;
 

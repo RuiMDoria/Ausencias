@@ -9,7 +9,7 @@ import com.example.ruido.ausencias.Ausencias.MinhasAusenciasActivity;
 import com.example.ruido.ausencias.Inserir.InserirActivity;
 import com.example.ruido.ausencias.Pedidos.PedidosActivity;
 
-
+//Class dedicada ao menu principal que faz com que os botões abram novos layouts
 public class MainActivity extends AppCompatActivity {
 
     String idutilizador;

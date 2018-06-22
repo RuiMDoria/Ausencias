@@ -7,16 +7,17 @@ import android.widget.TextView;
 
 import com.example.ruido.ausencias.R;
 
+//Class que atribui variaveis a cada elemento do layout activity_minhaausencia
 public class Ausencia extends RecyclerView.ViewHolder {
     TextView nome, motivo, datainicio, datafim, estado;
 
     public Ausencia(View itemView) {
         super(itemView);
-        nome = itemView.findViewById(R.id.tv_name);
-        motivo = itemView.findViewById(R.id.tv_motivo);
-        datainicio = itemView.findViewById(R.id.tv_startdate);
-        datafim = itemView.findViewById(R.id.tv_finishdate);
-        estado = itemView.findViewById(R.id.tv_state);
+        nome = itemView.findViewById(R.id.tv_name1);
+        motivo = itemView.findViewById(R.id.tv_motivo1);
+        datainicio = itemView.findViewById(R.id.tv_startdate1);
+        datafim = itemView.findViewById(R.id.tv_finishdate1);
+        estado = itemView.findViewById(R.id.tv_state1);
     }
 }
 

@@ -9,7 +9,7 @@ import android.view.View;
 /**
  * Created by ruido on 22/06/2018.
  */
-
+//Class do popup depois de inserir uma ausencia
 public class popup1 extends AppCompatActivity {
     String idutilizador, nivelacesso, primeironome, ultimonome;
 

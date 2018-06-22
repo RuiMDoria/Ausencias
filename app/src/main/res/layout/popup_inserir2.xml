@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:background="#4d4d4d"
     android:orientation="vertical"
-    tools:context="com.example.ruido.ausencias.Pedidos.PedidoActivity">
+    tools:context="com.example.ruido.ausencias.popup2">
 
     <TextView
         android:layout_width="280dp"

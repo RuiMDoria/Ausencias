@@ -8,7 +8,7 @@ import android.view.View;
 /**
  * Created by ruido on 22/06/2018.
  */
-
+//Class responsavel por popup para depois de alterar o estado do pedido
 public class popup2 extends AppCompatActivity {
     String idutilizador, nivelacesso, primeironome, ultimonome;
 
