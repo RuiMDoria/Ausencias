@@ -41,7 +41,7 @@ public class PedidosController {
 
     public void pedir(final String idutilizador, final String nivelacesso, final String primeironome, final String ultimonome, Context context) {
         Request request = new Request.Builder()
-                .url("http://192.168.2.252:81/Ausencia/listarpedidos.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
+                .url("http://visualthinking.ddns.net:81/Ausencia/listarpedidos.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
                 .build();
         okhttp3.Call myCall = okHttpClient.newCall(request);
         myCall.enqueue(new Callback() {

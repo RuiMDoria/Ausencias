@@ -76,7 +76,6 @@ public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
                     intent.putExtra("firstname", First.get(position));
                     intent.putExtra("lastname", Last.get(position));
                     context.startActivity(intent);
-                    ((PedidosActivity) context).finish();
                 }
             });
         } else {

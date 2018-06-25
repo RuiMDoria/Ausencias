@@ -23,7 +23,7 @@ public class LoginController {
             if (email.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(context, "Nenhum campo pode estar vazio", Toast.LENGTH_LONG).show();
             } else {
-                url = "http://192.168.2.252:81/Ausencia/login.php?email=" + email + "&password=" + pass;//metodo GET
+                url = "http://visualthinking.ddns.net:81/Ausencia/login.php?email=" + email + "&password=" + pass;//metodo GET
             }
             new SolicitaDados().execute(url);
         } else {

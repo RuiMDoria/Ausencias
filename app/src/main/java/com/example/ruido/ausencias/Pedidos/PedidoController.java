@@ -28,7 +28,7 @@ public class PedidoController {
         this.primeironome = primeironome;
 
         if (networkInfo != null && networkInfo.isConnected()) {
-            url = "http://192.168.2.252:81/Ausencia/aceitar.php?id=" + idpedido;//metodo POST
+            url = "http://visualthinking.ddns.net:81/Ausencia/aceitar.php?id=" + idpedido;//metodo POST
             new PedidoController.SolicitaDados().execute(url);
         } else {
             Toast.makeText(context, "Nenhuma Conexão foi detetada", Toast.LENGTH_LONG).show();
@@ -45,7 +45,7 @@ public class PedidoController {
 
 
         if (networkInfo != null && networkInfo.isConnected()) {
-            url = "http://192.168.2.252:81/Ausencia/rejeitar.php?id=" + idpedido;//metodo POST
+            url = "http://visualthinking.ddns.net:81/Ausencia/rejeitar.php?id=" + idpedido;//metodo POST
             new PedidoController.SolicitaDados().execute(url);
         } else {
             Toast.makeText(context, "Nenhuma Conexão foi detetada", Toast.LENGTH_LONG).show();
