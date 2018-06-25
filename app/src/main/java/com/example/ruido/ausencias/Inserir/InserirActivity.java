@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -14,13 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.ruido.ausencias.Ausencias.MinhasAusenciasActivity;
-import com.example.ruido.ausencias.Conexao;
 import com.example.ruido.ausencias.Pedidos.PedidosActivity;
 import com.example.ruido.ausencias.R;
-import com.example.ruido.ausencias.popup1;
 
 import java.net.URLEncoder;
 
@@ -32,12 +28,14 @@ public class InserirActivity extends AppCompatActivity {
     Spinner spinnerHoras;
     EditText textoObservacoes;
     Button Enviar;
-    String url="";
     String idutilizador, primeironome, ultimonome, nivelacesso, nome;
+    private InserirController inserir = new InserirController();
+    private Context context;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         setContentView(R.layout.activity_inserir);
         DateStart = findViewById(R.id.dateStart);
         DateFinish = findViewById(R.id.dateFinish);
@@ -50,33 +48,24 @@ public class InserirActivity extends AppCompatActivity {
         ultimonome = getIntent().getExtras().getString("lastname");
         nivelacesso = getIntent().getExtras().getString("acesslevel");
         nome = primeironome + " " + ultimonome;
-    }
 
-    //Class para fazer enviar os dados para a base de dados
-    public void Enviar(View view) {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        final NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        Enviar.setOnClickListener(new View.OnClickListener() {
 
-        if (networkInfo != null && networkInfo.isConnected()){
-            String dateStart = DateStart.getText().toString();
-            String dateFinish = DateFinish.getText().toString();
-            String motivo = spinnerMotivo.getSelectedItem().toString();
-            motivo=URLEncoder.encode(motivo);
-            String horas = spinnerHoras.getSelectedItem().toString();
-            String observacoes = textoObservacoes.getText().toString();
-            nome = URLEncoder.encode(nome);
-            observacoes = URLEncoder.encode(observacoes);
-
-
-            if (dateStart.isEmpty()||dateFinish.isEmpty()||motivo.isEmpty()||horas.isEmpty()){
-                Toast.makeText(getApplicationContext(), "Nenhum campo obrigatório pode estar vazio", Toast.LENGTH_LONG).show();
-            }else {
-                url = "http://thmc.ddns.net:81/Ausencia/inserir.php?startdate=" + dateStart + "&finishdate=" + dateFinish + "&reason=" + motivo + "&hours=" + horas + "&comments=" + observacoes + "&fk_id_user=" + idutilizador + "&name=" + nome;//metodo POST
+            @Override
+            public void onClick(View v) {
+                String dateStart = DateStart.getText().toString();
+                String dateFinish = DateFinish.getText().toString();
+                String motivo = spinnerMotivo.getSelectedItem().toString();
+                motivo = URLEncoder.encode(motivo);
+                String horas = spinnerHoras.getSelectedItem().toString();
+                String observacoes = textoObservacoes.getText().toString();
+                nome = URLEncoder.encode(nome);
+                observacoes = URLEncoder.encode(observacoes);
+                inserir.Enviar(dateStart, dateFinish, motivo, horas, observacoes, nome, idutilizador, primeironome, ultimonome, nivelacesso, context, networkInfo);
             }
-            new InserirActivity.SolicitaDados().execute(url);
-        }else{
-            Toast.makeText(getApplicationContext(), "Nenhuma Conexão foi detetada", Toast.LENGTH_LONG).show();
-        }
+        });
     }
 
 
@@ -131,31 +120,5 @@ public class InserirActivity extends AppCompatActivity {
         }
         return(true);
     }
-
-    private class SolicitaDados extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            return Conexao.postDados(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String resultado) {
-
-            if (resultado.contains("registo_ok")) {
-                Intent intent3 = new Intent(InserirActivity.this, popup1.class);
-                intent3.putExtra("id_user", idutilizador);
-                intent3.putExtra("acesslevel", nivelacesso);
-                intent3.putExtra("firstname", primeironome);
-                intent3.putExtra("lastname", ultimonome);
-                startActivity(intent3);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "Algo correu mal", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-
 
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -12,26 +11,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ruido.ausencias.Ausencias.MinhasAusenciasActivity;
-import com.example.ruido.ausencias.Conexao;
 import com.example.ruido.ausencias.R;
-import com.example.ruido.ausencias.popup2;
 
 
 public class PedidoActivity extends AppCompatActivity {
 
     TextView Nome, DataInicio, DataFim, Motivo, Horas, Observacoes;
     String idpedido, nome, datainicio, datafim, motivo, horas, observacoes, idutilizador, nivelacesso, primeironome, ultimonome;
-    String url = "";
     Button Aprovar;
     Button Rejeitar;
+    private PedidoController pedido = new PedidoController();
+    private Context context;
 
     //ao ser cria recebe as variavel e faz com que sejam visivel no local correto
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aprovacaopedido);
+        context = this;
         Nome = findViewById(R.id.nome2);
         DataInicio = findViewById(R.id.dateStartapro);
         DataFim = findViewById(R.id.dateFinishapro);
@@ -57,32 +55,23 @@ public class PedidoActivity extends AppCompatActivity {
         nivelacesso = getIntent().getExtras().getString("acesslevel");
         primeironome = getIntent().getExtras().getString("firstname");
         ultimonome = getIntent().getExtras().getString("lastname");
-    }
-
-    // Quando se carrega no botão Aceitar
-    public void Aceitar(View view) {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        final NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        if (networkInfo != null && networkInfo.isConnected()) {
-            url = "http://192.168.2.252:81/Ausencia/aceitar.php?id=" + idpedido;//metodo POST
-            new PedidoActivity.SolicitaDados().execute(url);
-        } else {
-            Toast.makeText(getApplicationContext(), "Nenhuma Conexão foi detetada", Toast.LENGTH_LONG).show();
-        }
-    }
+        Aprovar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pedido.aceitar(idpedido, idutilizador, ultimonome, nivelacesso, primeironome, context, networkInfo);
+            }
+        });
 
-    // Quando se carrega no botão Rejeitar
-    public void Rejeitar(View view) {
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        Rejeitar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pedido.rejeitar(idpedido, idutilizador, ultimonome, nivelacesso, primeironome, context, networkInfo);
+            }
 
-        if (networkInfo != null && networkInfo.isConnected()) {
-            url = "http://192.168.2.252:81/Ausencia/rejeitar.php?id=" + idpedido;//metodo POST
-            new PedidoActivity.SolicitaDados().execute(url);
-        } else {
-            Toast.makeText(getApplicationContext(), "Nenhuma Conexão foi detetada", Toast.LENGTH_LONG).show();
-        }
+        });
     }
 
     //Cria o menu superior
@@ -140,29 +129,6 @@ public class PedidoActivity extends AppCompatActivity {
         return (true);
     }
 
-    private class SolicitaDados extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            return Conexao.postDados(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String resultado) {
-
-            if (resultado.contains("registo_ok")) {
-                Intent intent3 = new Intent(PedidoActivity.this, popup2.class);
-                intent3.putExtra("id_user", idutilizador);
-                intent3.putExtra("acesslevel", nivelacesso);
-                intent3.putExtra("firstname", primeironome);
-                intent3.putExtra("lastname", ultimonome);
-                startActivity(intent3);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "Algo correu mal", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
 }
 
 

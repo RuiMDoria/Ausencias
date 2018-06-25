@@ -24,7 +24,6 @@
         android:layout_marginTop="25dp"
         android:background="#4d4d4d"
         android:drawableLeft="@drawable/ausencia"
-        android:onClick="pedidos"
         android:text="Pedidos"
         android:textColor="#ffffff" />
 
@@ -36,7 +35,6 @@
         android:layout_centerInParent="true"
         android:background="#4d4d4d"
         android:drawableLeft="@drawable/registo"
-        android:onClick="inserir"
         android:text="Inserir Ausência"
         android:textColor="#ffffff" />
 
@@ -49,7 +47,6 @@
         android:layout_marginBottom="95dp"
         android:background="#4d4d4d"
         android:drawableLeft="@drawable/ausenciapropria"
-        android:onClick="minhasausencias"
         android:text="Todas Ausências"
         android:textColor="#ffffff" />
 
