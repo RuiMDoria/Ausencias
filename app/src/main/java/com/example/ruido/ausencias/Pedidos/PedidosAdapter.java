@@ -78,8 +78,6 @@ public class PedidosAdapter extends RecyclerView.Adapter<Pedido> {
                     context.startActivity(intent);
                 }
             });
-        } else {
-            ((PedidosActivity) context).finish();
         }
     }
 
