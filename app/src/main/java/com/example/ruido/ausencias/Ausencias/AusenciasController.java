@@ -38,7 +38,7 @@ public class AusenciasController {
 
     public void ausencia(final String idutilizador, final String nivelacesso, final String primeironome, final String ultimonome, Context context) {
         Request request = new Request.Builder()
-                .url("http://visualthinking.ddns.net:81/Ausencia/listarausencias.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
+                .url("http://visualthinking.ddns.net/Ausencia/listarausencias.php?acesslevel=" + nivelacesso + "&id_user=" + idutilizador)
                 .build();
         okhttp3.Call myCall = okHttpClient.newCall(request);
         myCall.enqueue(new Callback() {
